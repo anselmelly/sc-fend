@@ -1,0 +1,99 @@
+<section class="section">
+  <div class="row" id="basic-table">
+    <div class="col">
+
+
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">STUDENT SCORES [ {{ exam.name }} ]</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+
+            <div class="table-responsive">
+              <table class="table table-lg">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>STUDENT ID</th>
+                    <th>SCORE</th>
+                    <th>&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let student of students">
+                    <td class="text-bold-500">{{ student.id }}</td>
+                    <td class="text-bold-500">{{ student.name }}</td>
+                    <td>{{ student.student_id }}</td>
+                    <td>
+                      <p *ngFor="let s of student.scores">
+                        <span *ngIf="s.exam_id===pint(examId??'0')">
+                          {{ s.mark }}
+                        </span>
+                      </p>
+                    </td>
+                    <td>
+                      <div class="btn-group">
+                        <a href="javascript:;" class="btn btn-sm btn-outline-primary" (click)="onEditRequest({action:'e',id:student.id})">
+                          <i class="bi bi-pencil"></i>
+                        </a>
+                        <a href="javascript:;" class="btn btn-sm btn-outline-danger">
+                          <i class="bi bi-trash"></i>
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="col-12 col-md-4">
+      <div class="card" [hidden]="student==undefined">
+        <div class="card-header">
+          <h4 class="card-title">ADD/UPDATE</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <form [formGroup]="scoreForm" (ngSubmit)="onSubmit()">
+              <div class="form-body">
+                <div class="row">
+                  <p>Student Name: {{ student?.name  }}</p>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <label for="first-name-horizontal">Mark ID</label>
+                  </div>
+                  <div class="col-md-8 form-group" [ngClass]="{'is-invalid':scoreForm.controls['mark'].invalid}">
+                    <input type="text" id="first-name-horizontal" class="form-control" name="mark" placeholder="Mark"
+                      formControlName="mark">
+                      <div class="invalid-feedback" *ngIf="scoreForm.controls['mark'].errors?.['required']">
+                        <i class="bx bx-radio-circle"></i>
+                        Student score mark is required
+                      </div>
+                  </div>
+                </div>
+                <div class="col-sm-12 d-flex justify-content-end">
+                  <button type="submit" class="btn btn-primary me-1 mb-1" [disabled]="scoreForm.invalid">
+                    Submit
+                  </button>
+                  <button type="button" class="btn btn-light-secondary me-1 mb-1" >
+                    Reset
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

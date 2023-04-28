@@ -1,0 +1,114 @@
+<section class="section">
+  <div class="row" id="basic-table">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">LIST OF EXAMS</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+
+            <div class="table-responsive">
+              <table class="table table-lg">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>TEACHER</th>
+                    <th>PASS MARK</th>
+                    <th>&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let exam of exams">
+                    <td class="text-bold-500">{{ exam.id }}</td>
+                    <td class="text-bold-500">{{ exam.name }}</td>
+                    <td>{{ exam.teacher.name }}</td>
+                    <td>{{ exam.pass_mark }}</td>
+                    <td>
+                      <div class="btn-group">
+                        <a href="javascript:;" class="btn btn-sm btn-outline-primary" (click)="onEditRequest({action:'e',id:exam.id})">
+                          <i class="bi bi-pencil"></i>
+                        </a>
+                        <a href="javascript:;" class="btn btn-sm btn-outline-danger" (click)="onDelete(exam.id)">
+                          <i class="bi bi-trash"></i>
+                        </a>
+                        <a href="javascript:;" class="btn btn-sm btn-light-secondary" [routerLink]="[exam.id,'scores']">record scores</a>
+                      </div>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">UPDATE/CREATE</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <form [formGroup]="examForm" (ngSubmit)="onSubmit()">
+              <div class="form-body">
+
+                <div class="row">
+                  <div class="col-4">
+                    <label for="first-name-horizontal">Exam Name</label>
+                  </div>
+                  <div class="col-md-8 form-group" [ngClass]="{'is-invalid':examForm.controls['name'].invalid}">
+                    <input type="text" id="first-name-horizontal" class="form-control" name="name"
+                      placeholder="Exam Name" formControlName="name">
+                    <div class="invalid-feedback" *ngIf="examForm.controls['name'].errors?.['required']">
+                      <i class="bx bx-radio-circle"></i>
+                      Student ID is required
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-4">
+                    <label for="first-name-horizontal">Pass Mark</label>
+                  </div>
+                  <div class="col-md-8 form-group" [ngClass]="{'is-invalid':examForm.controls['pass_mark'].invalid}">
+                    <input type="text" id="first-name-horizontal" class="form-control" name="pass_mark"
+                      placeholder="Pass Mark" formControlName="pass_mark">
+                    <div class="invalid-feedback" *ngIf="examForm.controls['pass_mark'].errors?.['required']">
+                      <i class="bx bx-radio-circle"></i>
+                      Pass mark required
+                    </div>
+                  </div>
+                </div>
+                  <div class="row">
+                    <div class="col-4">
+                      <label for="first-name-horizontal">Select Teacher</label>
+                    </div>
+                    <div class="col-md-8 form-group" [ngClass]="{'is-invalid':examForm.controls['teacher_id'].invalid}">
+                      <select class="form-select" id="basicSelect" formControlName="teacher_id" name="teacher_id" placeholder="--Select--">
+                        <option *ngFor="let x of teachers" [ngValue]="x.id">{{ x.name }}</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12 d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary me-1 mb-1" [disabled]="examForm.invalid">
+                      Submit
+                    </button>
+                    <button type="button" (reset)="onReset()" class="btn btn-light-secondary me-1 mb-1" >
+                      Reset
+                    </button>
+                  </div>
+
+                  </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+

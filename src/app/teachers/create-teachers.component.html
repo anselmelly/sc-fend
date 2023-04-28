@@ -1,0 +1,68 @@
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">ADD/UPDATE</h4>
+  </div>
+  <div class="card-content">
+    <div class="card-body">
+      <form [formGroup]="teacherForm" (ngSubmit)="onSubmit()">
+        <div class="form-body">
+          <div class="row">
+            <div class="col-md-4">
+              <label for="first-name-horizontal">Staff ID</label>
+            </div>
+            <div class="col-md-8 form-group" [ngClass]="{'is-invalid':teacherForm.controls['staff_id'].invalid}">
+              <input type="text" id="first-name-horizontal" class="form-control" name="name" placeholder="Staff ID"
+                formControlName="staff_id">
+                <div class="invalid-feedback" *ngIf="teacherForm.controls['staff_id'].errors?.['required']">
+                  <i class="bx bx-radio-circle"></i>
+                  Staff ID is required
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <label for="first-name-horizontal">Name</label>
+            </div>
+            <div class="col-md-8 form-group"  [ngClass]="{'is-invalid':teacherForm.controls['name'].invalid}">
+              <input type="text" id="first-name-horizontal" class="form-control" name="name" placeholder="Name"
+                formControlName="name">
+                <div class="invalid-feedback" *ngIf="teacherForm.controls['name'].errors?.['required']">
+                  <i class="bx bx-radio-circle"></i>
+                  name is requried
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <label for="email-horizontal">Email</label>
+            </div>
+            <div class="col-md-8 form-group"  [ngClass]="{'is-invalid':teacherForm.controls['email'].invalid}">
+              <input type="email" id="email-horizontal" class="form-control" name="email-id" placeholder="Email"
+                formControlName="email">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <label for="contact-info-horizontal">Mobile</label>
+            </div>
+            <div class="col-md-8 form-group"  [ngClass]="{'is-invalid':teacherForm.controls['phone'].invalid}">
+              <input type="tel" id="contact-info-horizontal" class="form-control" name="contact" placeholder="Mobile"
+                formControlName="phone">
+            </div>
+
+          </div>
+          <div class="col-sm-12 d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary me-1 mb-1" [disabled]="teacherForm.invalid">
+              Submit
+            </button>
+            <button type="reset" (click)="resetForm()" class="btn btn-light-secondary me-1 mb-1">
+              Reset
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+

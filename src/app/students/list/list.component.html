@@ -1,0 +1,49 @@
+
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">List of students</h4>
+    </div>
+    <div class="card-content">
+      <div class="card-body">
+
+        <div class="table-responsive">
+          <table class="table table-lg">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>EMAIL</th>
+                <th>PHONE</th>
+                <th>STUDENT ID</th>
+                <th>&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let student of students">
+                <td class="text-bold-500">{{ student.id }}</td>
+                <td class="text-bold-500">{{ student.name }}</td>
+                <td>{{ student.email }}</td>
+                <td class="text-bold-500">{{student.phone }}</td>
+                <td class="text-bold-500">{{student.student_id }}</td>
+                <td>
+                  <div class="btn-group">
+                  <a href="javascript:;" (click)="loadEdit({action:'e',id:student.id})" class="btn btn-sm btn-outline-primary">
+                    <i class="bi bi-pencil"></i>
+                  </a>
+                  <a href="javascript:;" class="btn btn-sm btn-outline-danger" (click)="onDelete(student.id)">
+                    <i class="bi bi-trash"></i>
+                  </a>
+                  <a href="javascript:;" class="btn btn-sm btn-light-secondary" (click)="">
+                    view scores
+                  </a>
+                </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+

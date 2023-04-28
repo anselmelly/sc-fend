@@ -1,0 +1,44 @@
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">LIST OF TEACHERS</h4>
+  </div>
+  <div class="card-content">
+    <div class="card-body">
+
+      <div class="table-responsive">
+        <table class="table table-lg">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>NAME</th>
+              <th>EMAIL</th>
+              <th>PHONE</th>
+              <th>STAFF ID</th>
+              <th>&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let teacher of teachers">
+              <td>{{ teacher.id }}</td>
+              <td class="text-bold-500">{{ teacher.name }}</td>
+              <td>{{ teacher.email }}</td>
+              <td class="text-bold-500">{{teacher.phone }}</td>
+              <td class="text-bold-500">{{teacher.staff_id }}</td>
+              <td>
+                <div class="btn-group">
+                  <a (click)="loadEdit({'action':'e',id:teacher.id})" class="btn btn-sm btn-outline-primary">
+                    <i class="bi bi-pencil"></i>
+                  </a>
+                  <a href="javascript:;" (click)="onDelete(teacher.id)" class="btn btn-sm btn-outline-danger">
+                    <i class="bi bi-trash"></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
